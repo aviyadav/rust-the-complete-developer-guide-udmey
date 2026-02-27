@@ -1,3 +1,5 @@
+use rand::seq::SliceRandom;
+
 #[derive(Debug)]
 
 struct Deck {
@@ -37,13 +39,28 @@ impl Deck {
 
         Deck { cards }
     }
+
+    fn shuffle(&mut self) {
+        let mut rng = rand::rng();
+        self.cards.shuffle(&mut rng);
+    }
+
+    fn deal(&mut self, num_cards: usize) -> Vec<String> {
+        self.cards.split_off(self.cards.len() - num_cards)
+    }
 }
 
 fn main() {
-    let deck = Deck::new();
+    let mut deck = Deck::new();
 
     // println!("Here is your deck: {:?}", deck);
-    // println!("Here is your deck: {:#?}", deck);
+    println!("Here is your deck: {:#?}", deck);
     // println!("Here is your deck: {deck:?}")
-    println!("Here is your deck: {deck:#?}")
+
+    deck.shuffle();
+
+    println!("Here is your shuffled deck: {deck:#?}");
+
+    let hand = deck.deal(5);
+    println!("Your hand: {hand:#?}");
 }
