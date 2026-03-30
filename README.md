@@ -36,3 +36,16 @@ cargo add rand
 ```
 
 docs at - https://doc.rust-lang.org/stable/std/primitive.slice.html#method.split_off
+
+
+#### updates [rustup]
+
+```
+rustup self update
+```
+
+#### [rust latest version]
+
+'''
+rustup update stable
+```
