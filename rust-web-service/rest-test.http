@@ -1,0 +1,80 @@
+### Health check
+GET http://127.0.0.1:9090/health
+Accept: application/json
+
+###
+
+### Create task 1
+POST http://127.0.0.1:9090/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Buy milk",
+  "description": "Semi-skimmed, 2 litres"
+}
+
+###
+
+### Create task 2 (no description)
+POST http://127.0.0.1:9090/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Write unit tests"
+}
+
+###
+
+### List all tasks
+GET http://127.0.0.1:9090/api/tasks
+Accept: application/json
+
+###
+
+### Get a single task by ID (replace <id> with a real UUID from the responses above)
+GET http://127.0.0.1:9090/api/tasks/<id>
+Accept: application/json
+
+###
+
+### Update task — mark completed and change title
+PUT http://127.0.0.1:9090/api/tasks/<id>
+Content-Type: application/json
+
+{
+  "title": "Buy milk (done)",
+  "completed": true
+}
+
+###
+
+### Update task — description only
+PUT http://127.0.0.1:9090/api/tasks/<id>
+Content-Type: application/json
+
+{
+  "description": "Updated description"
+}
+
+###
+
+### Delete a task
+DELETE http://127.0.0.1:9090/api/tasks/<id>
+
+###
+
+### Attempt to get a deleted / non-existent task (expect 404)
+GET http://127.0.0.1:9090/api/tasks/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+###
+
+### Attempt to create a task with an empty title (expect 400)
+POST http://127.0.0.1:9090/api/tasks
+Content-Type: application/json
+
+{
+  "title": ""
+}
+
+###
